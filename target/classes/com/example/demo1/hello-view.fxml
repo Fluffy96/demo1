@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.2">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
   <tabs>
     <Tab text="Student Profiles">
       <content>
@@ -22,12 +22,25 @@
                   <RadioButton fx:id="isBA" layoutX="330.0" layoutY="71.0" mnemonicParsing="false" text="BA" toggleGroup="$Majors" />
                   <Label layoutX="54.0" layoutY="71.0" text="Major:" />
                   <Label layoutX="54.0" layoutY="113.0" text="Status:" />
-                  <RadioButton layoutX="95.0" layoutY="113.0" mnemonicParsing="false" text="Resident">
+                  <RadioButton fx:id="isRes" layoutX="95.0" layoutY="113.0" mnemonicParsing="false" text="Resident">
                      <toggleGroup>
                         <ToggleGroup fx:id="rVSnr" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton layoutX="220.0" layoutY="113.0" mnemonicParsing="false" text="Non-Resident" />
+                  <RadioButton fx:id="isNonRes" layoutX="220.0" layoutY="113.0" mnemonicParsing="false" text="Non-Resident" toggleGroup="$rVSnr" />
+                  <RadioButton fx:id="isTristate" layoutX="95.0" layoutY="151.0" mnemonicParsing="false" opacity="0.6" text="Tristate">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="nonResType" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="isNY" layoutX="206.0" layoutY="151.0" mnemonicParsing="false" opacity="0.6" text="New York">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="State" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="isCon" layoutX="323.0" layoutY="151.0" mnemonicParsing="false" opacity="0.6" text="Connecticut" toggleGroup="$State" />
+                  <RadioButton fx:id="isInternational" layoutX="95.0" layoutY="186.0" mnemonicParsing="false" opacity="0.6" text="International" toggleGroup="$nonResType" />
+                  <RadioButton fx:id="isStudyAbroad" layoutX="211.0" layoutY="186.0" mnemonicParsing="false" opacity="0.6" text="Study Abroad" toggleGroup="$nonResType" />
                </children></AnchorPane>
       </content>
     </Tab>
