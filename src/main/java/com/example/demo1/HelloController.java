@@ -7,13 +7,22 @@ import javafx.scene.control.TextField;
 
 public class HelloController {
     @FXML
+    private Label welcomeText;
+    @FXML
     private Button addStudent;
     @FXML
-    private TextField studentProfileOutput;
+    private TextField profileOutput;
 
     @FXML
-    protected void addClicked() {
-        studentProfileOutput.setText("HI");
-
+    protected void onHelloButtonClick() {
+        welcomeText.setText("Welcome to JavaFX Application!");
+    }
+    @FXML
+    protected void onAddClick() {
+        profileOutput.setText("HI");
+    }
+    @FXML
+    protected void onremoveClick() {
+        profileOutput.setText("HI");
     }
 }
