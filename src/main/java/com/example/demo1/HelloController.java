@@ -59,6 +59,6 @@ public class HelloController {
     }
     @FXML
     protected void onremoveClick() {
-        profileOutput.setText("HI");
+        profileOutput.setText("yo");
     }
 }
