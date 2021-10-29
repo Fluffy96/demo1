@@ -44,7 +44,7 @@
                   <CheckBox fx:id="isAbroad" layoutX="213.0" layoutY="186.0" mnemonicParsing="false" text="Study Abroad" />
                   <TextField fx:id="creditHours" layoutX="139.0" layoutY="206.0" />
                   <Button fx:id="addStudent" layoutX="104.0" layoutY="254.0" mnemonicParsing="false" onAction="#onAddClick" text="Add Student" />
-                  <Button fx:id="removeStudent" layoutX="266.0" layoutY="254.0" mnemonicParsing="false" onAction="#onremoveClick" text="Remove Student" />
+                  <Button fx:id="removeStudent" layoutX="266.0" layoutY="254.0" mnemonicParsing="false" onAction="#onRemoveClick" text="Remove Student" />
                   <Button fx:id="tuitionDue" layoutX="101.0" layoutY="302.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="78.0" text="Tuition Due" />
                   <Label layoutX="254.0" layoutY="306.0" text="\$" />
                   <TextField fx:id="tuitionField" layoutX="266.0" layoutY="302.0" text="0.00" />
