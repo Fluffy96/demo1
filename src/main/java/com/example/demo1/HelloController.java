@@ -6,12 +6,13 @@ import com.example.demo1.Student.Major;
 import com.example.demo1.Student.Tri;
 
 public class HelloController {
+    private static final int NOT_FOUND = -1;
     @FXML
     private Label welcomeText;
     @FXML
     private Button addStudent;
     @FXML
-    private TextField inputName, creditHours;
+    private TextField inputName,tuitionField, creditHours;
     @FXML
     private TextArea profileOutput;
     @FXML
@@ -43,23 +44,42 @@ public class HelloController {
                     int credits = returnCredit();
                     if(credits != -1 && creditValidator(credits)){
                         if(studentType.equals("Resident")){
-                            roster.add(new Resident(name,major,credits));
+                            if(roster.inRoster(new Student(name,major,credits))==NOT_FOUND) {
+                                roster.add(new Resident(name, major, credits));
+                                profileOutput.setText("Student added.");
+                            }else{
+                                profileOutput.setText("Student is already in the roster.");
+                            }
                         }else if(studentType.equals("Non-Resident")){
-                            roster.add(new NonResident(name,major,credits));
+                            if(roster.inRoster(new Student(name,major,credits))==NOT_FOUND) {
+                                roster.add(new NonResident(name, major, credits));
+                                profileOutput.setText("Student added.");
+                            }else{
+                            profileOutput.setText("Student is already in the roster.");
+                        }
                         }else if(studentType.equals("Tristate")){
                             if(returnState()!=null){
-                                roster.add(new TriState(name,major,credits,returnState()));
+                                if(roster.inRoster(new Student(name,major,credits))==NOT_FOUND){
+                                    roster.add(new TriState(name,major,credits,returnState()));
+                                    profileOutput.setText("Student added.");
+                                }else{
+                                    profileOutput.setText("Student is already in the roster.");
+                                }
                             }else{
                                 profileOutput.setText("Have not selected State");
                             }
-                        }else if(studentType.equals("International")){
+                        }else if(studentType.equals("International") && creditValidator(credits,isAbroad.isSelected())){
+                            if(roster.inRoster(new Student(name,major,credits))==NOT_FOUND){
+                                roster.add(new International(name,major,credits,isAbroad.isSelected()));
+                                profileOutput.setText("Student added.");
+                            }else{
+                                profileOutput.setText("Student is already in the roster.");
+                            }
 
                         }
+                    }else{
+                        profileOutput.setText("Have not filled in Credits");
                     }
-                    else{
-                        profileOutput.setText("Invalid Credit Hours");
-                    }
-
                 }else {
                     profileOutput.setText("Have not clicked Student Type");
                 }
@@ -175,21 +195,71 @@ public class HelloController {
     }
     @FXML
     protected void onRemoveClick() {
-        profileOutput.setText("HI");
+        String name = inputName.getText();
+        profileOutput.setText("");
+        if(!name.equals("")) {
+            String maj = returnMajor();
+            if (maj != null) {
+                Major major = toMajor(maj);
+                String studentType = returnStudent();
+                if(roster.remove(new Student(name,major,0))){
+                    profileOutput.setText("Student removed from the roster.");
+                }
+                else{
+                    profileOutput.setText("Student is not in the roster.");
+                }
+            } else {
+                profileOutput.setText("Have not clicked a Major");
+            }
+        }else{
+            profileOutput.setText("No name provided");
+        }
     }
+    @FXML
+    protected void onTuitionDueClick(){
+        String name = inputName.getText();
+        profileOutput.setText("");
+        if(!name.equals("")) {
+            String maj = returnMajor();
+            if (maj != null) {
+                Major major = toMajor(maj);
+                String studentType = returnStudent();
+                if(roster.inRoster(new Student(name,major))!= NOT_FOUND){
+                    Student tuit = new Student(name,major);
+                    if(roster.amountDue(tuit)<=0.0){
+                        roster.calculation(new Student(name,major));
+                        tuitionField.setText(Double.toString(roster.amountDue(tuit)));
+                    }else{
+                        tuitionField.setText(Double.toString(roster.amountDue(tuit)));
+                    }
+
+
+
+                }
+                else{
+                    profileOutput.setText("Student is not in the roster.");
+                }
+            } else {
+                profileOutput.setText("Have not clicked a Major");
+            }
+        }else{
+            profileOutput.setText("No name provided");
+        }
+    }
+
     /**
      * Method returns tristate enum based on string input
      * @param triState
      * @returns Tri
      */
     private Student.Tri toTriState (String triState){
-        switch (triState.toUpperCase()){
-            case "CT":
+        switch (triState){
+            case "Connecticut":
                 return Student.Tri.CT;
-            case "NY":
+            case "New York":
                 return Student.Tri.NY;
             default:
-                System.out.println("Not part of the tri-state area.");
+                profileOutput.setText("Not part of the tri-state area.");
                 return null;
         }
     }
@@ -212,7 +282,7 @@ public class HelloController {
             case "ME":
                 return Student.Major.ME;
             default:
-                System.out.println(input+" is not a valid major.");
+                profileOutput.setText(input+" is not a valid major.");
                 return null;
         }
     }
@@ -224,15 +294,15 @@ public class HelloController {
      */
     private boolean creditValidator (int credits){
         if (credits < 0){
-            System.out.println("Credit hours cannot be negative.");
+            profileOutput.setText("Credit hours cannot be negative.");
             return false;
         }
         else if (credits < Student.MIN_CREDITS){
-            System.out.println("Minimum credit hours is 3.");
+            profileOutput.setText("Minimum credit hours is 3.");
             return false;
         }
         else if (credits > Student.MAX_CREDITS){
-            System.out.println("Credit hours exceed the maximum 24.");
+            profileOutput.setText("Credit hours exceed the maximum 24.");
             return false;
         }
         else{
@@ -246,26 +316,26 @@ public class HelloController {
      */
     private boolean creditValidator (int credits, boolean isStudyAbroad){
         if (credits < 0){
-            System.out.println("Credit hours cannot be negative.");
+            profileOutput.setText("Credit hours cannot be negative.");
             return false;
         }
         else if (credits < Student.MIN_CREDITS){
-            System.out.println("Minimum credit hours is 3.");
+            profileOutput.setText("Minimum credit hours is 3.");
             return false;
         }
         else if(!isStudyAbroad) {
             if (credits < Student.MAX_PARTTIME_CREDITS) {
-                System.out.println("International students must enroll at least 12 credits.");
+                profileOutput.setText("International students must enroll at least 12 credits.");
                 return false;
             } else if (credits > Student.MAX_CREDITS) {
-                System.out.println("Credit hours exceed the maximum 24.");
+                profileOutput.setText("Credit hours exceed the maximum 24.");
                 return false;
             } else {
                 return true;
             }
         }
         else if(credits > Student.MAX_PARTTIME_CREDITS){
-            System.out.println("Credit hours exceed the maximum 12.");
+            profileOutput.setText("Credit hours exceed the maximum 12.");
             return false;
         }
         else{
