@@ -177,6 +177,18 @@ public class Roster {
      * @Params none
      * @return none
      */
+    public void calculation(Student stu) {
+        int ind = inRoster(stu);
+        if(ind != NOT_FOUND){
+            roster[ind].setTuition(0);
+            roster[ind].tuitionDue();
+        }
+    }
+    /**
+     * Method calculated the tuition due for all students in roster
+     * @Params none
+     * @return none
+     */
     public void calculations() {
         for (Student student : roster) {
             if (student != null) {
@@ -185,7 +197,19 @@ public class Roster {
             }
         }
     }
-
+    /**
+     * Method returns the tuition due for a student
+     * @Params none
+     * @return none
+     */
+    public double amountDue(Student stu) {
+        int ind = inRoster(stu);
+        if(ind != NOT_FOUND){
+            return(roster[ind].getTuition());
+        }else{
+            return NOT_FOUND;
+        }
+    }
     /**
      * Method prints out all students in roster
      * @Params none
