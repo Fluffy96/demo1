@@ -5,6 +5,8 @@ import javafx.scene.control.*;
 import com.example.demo1.Student.Major;
 import com.example.demo1.Student.Tri;
 
+import java.time.LocalDate;
+
 public class HelloController {
     private static final int NOT_FOUND = -1;
     @FXML
@@ -12,7 +14,9 @@ public class HelloController {
     @FXML
     private Button addStudent;
     @FXML
-    private TextField inputName,tuitionField, creditHours;
+    private DatePicker isDate;
+    @FXML
+    private TextField inputName,tuitionField, creditHours, isPaymentName, isPaymentAmount, isFinancialAid;
     @FXML
     private TextArea profileOutput, paymentOutput, processOutput;
     @FXML
@@ -93,12 +97,54 @@ public class HelloController {
 
     @FXML
     protected void onPayClick(){
-
+        String name = isPaymentName.getText();
+        paymentOutput.setText("");
+        if(!name.equals("")) {
+            String maj = returnPaymentMajor();
+            if (maj != null) {
+                Major major = toMajor(maj);
+                String payment = isPaymentAmount.getText();
+                if(!payment.equals("")){
+                    LocalDate date = isDate.getValue();
+                    if(date != null){
+                        Date d = new Date(date.toString());
+                        double paymentAmount = Double.parseDouble(payment);
+                        paymentOutput.setText(roster.tuitionPayment(d, paymentAmount, new Student(name,major)));
+                    }else {
+                        paymentOutput.setText("Have not selected date");
+                    }
+                }else{
+                    paymentOutput.setText("Have not set payment amount");
+                }
+            } else {
+                paymentOutput.setText("Have not clicked a Major");
+            }
+        }else{
+            paymentOutput.setText("No name provided");
+        }
     }
 
     @FXML
     protected void onSetClick(){
-
+        String name = isPaymentName.getText();
+        paymentOutput.setText("");
+        if(!name.equals("")) {
+            String maj = returnPaymentMajor();
+            if (maj != null) {
+                Major major = toMajor(maj);
+                String aid = isFinancialAid.getText();
+                if(!aid.equals("")){
+                    double aidAmount = Double.parseDouble(aid);
+                    paymentOutput.setText(roster.financialAid(name, major, aidAmount));
+                }else {
+                    paymentOutput.setText("Missing Aid Amount");
+                }
+            } else {
+                paymentOutput.setText("Have not clicked a Major");
+            }
+        }else{
+            paymentOutput.setText("No name provided");
+        }
     }
 
     @FXML
@@ -215,6 +261,15 @@ public class HelloController {
             return(selectedRadioButton.getText());
         }catch(NullPointerException e){
             return(null);
+        }
+    }
+
+    private String returnPaymentMajor(){
+        try {
+            RadioButton selectedRadioButton = (RadioButton) PaymentMajors.getSelectedToggle();
+            return(selectedRadioButton.getText());
+        }catch (NullPointerException e){
+            return (null);
         }
     }
     private String returnStudent(){

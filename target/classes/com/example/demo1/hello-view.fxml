@@ -83,9 +83,9 @@
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
                   <Button layoutX="42.0" layoutY="37.0" mnemonicParsing="false" onAction="#onCalculateTuitionClick" text="Calculate Tuition for Students" />
-                  <Button layoutX="42.0" layoutY="83.0" mnemonicParsing="false" onAction="#onPrintRosterClick" text="Print Roster" />
-                  <Button layoutX="185.0" layoutY="83.0" mnemonicParsing="false" onAction="#onPrintRosterByNameClick" text="Print Roster by Name" />
-                  <Button layoutX="372.0" layoutY="83.0" mnemonicParsing="false" onAction="#onPrintRosterByDateClick" text="Print Roster by Payment Date" />
+                  <Button layoutX="42.0" layoutY="83.0" mnemonicParsing="false" onAction="#onPrintRosterClick" prefHeight="25.0" prefWidth="155.0" text="Print Roster" />
+                  <Button layoutX="204.0" layoutY="83.0" mnemonicParsing="false" onAction="#onPrintRosterByNameClick" prefHeight="25.0" prefWidth="161.0" text="Print Roster by Name" />
+                  <Button layoutX="372.0" layoutY="83.0" mnemonicParsing="false" onAction="#onPrintRosterByDateClick" prefHeight="25.0" prefWidth="172.0" text="Print Roster by Payment Date" />
                   <TextArea fx:id="processOutput" layoutX="42.0" layoutY="131.0" prefHeight="364.0" prefWidth="505.0" />
                </children></AnchorPane>
         </content>
