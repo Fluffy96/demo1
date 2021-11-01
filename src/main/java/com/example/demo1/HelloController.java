@@ -14,9 +14,9 @@ public class HelloController {
     @FXML
     private TextField inputName,tuitionField, creditHours;
     @FXML
-    private TextArea profileOutput;
+    private TextArea profileOutput, paymentOutput, processOutput;
     @FXML
-    private ToggleGroup Majors, Students, State;
+    private ToggleGroup Majors, Students, State, PaymentMajors;
     @FXML
     private RadioButton isRes, isNonRes, isTristate, isNY, isCT, isInternational;
     @FXML
@@ -90,6 +90,38 @@ public class HelloController {
             profileOutput.setText("No name provided");
         }
     }
+
+    @FXML
+    protected void onPayClick(){
+
+    }
+
+    @FXML
+    protected void onSetClick(){
+
+    }
+
+    @FXML
+    protected void onCalculateTuitionClick(){
+        processOutput.setText("Calculations completed.");
+        roster.calculations();
+    }
+
+    @FXML
+    protected void onPrintRosterClick(){
+        roster.print(processOutput);
+    }
+
+    @FXML
+    protected void onPrintRosterByNameClick(){
+        roster.printByName(processOutput);
+    }
+
+    @FXML
+    protected void onPrintRosterByDateClick(){
+        roster.printByDate(processOutput);
+    }
+
     @FXML
     protected void onResidentClick(){
         isNY.setOpacity(INVISIBLE);

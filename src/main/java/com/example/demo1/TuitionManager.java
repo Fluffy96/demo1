@@ -126,13 +126,13 @@ public class TuitionManager {
                     S(c);
                     break;
                 case "P":
-                    roster.print();
+                    //roster.print();
                     break;
                 case "PT":
-                    roster.printByDate();
+                    //roster.printByDate();
                     break;
                 case "PN":
-                    roster.printByName();
+                    //roster.printByName();
                     break;
                 case "Q":
                     System.out.println("Tuition Manager terminated.");

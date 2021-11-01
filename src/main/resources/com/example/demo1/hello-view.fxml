@@ -36,9 +36,9 @@
                   </RadioButton>
                   <RadioButton fx:id="isCT" layoutX="323.0" layoutY="151.0" mnemonicParsing="false" opacity="0.6" text="Connecticut" toggleGroup="$State" />
                   <RadioButton fx:id="isInternational" layoutX="95.0" layoutY="186.0" mnemonicParsing="false" onAction="#onInternationalClick" text="International" toggleGroup="$Students" />
-                  <Label layoutX="54.0" layoutY="210.0" text="Credit Hours:" />
+                  <Label layoutX="54.0" layoutY="219.0" text="Credit Hours:" />
                   <CheckBox fx:id="isAbroad" layoutX="213.0" layoutY="186.0" mnemonicParsing="false" opacity="0.6" text="Study Abroad" />
-                  <TextField fx:id="creditHours" layoutX="139.0" layoutY="206.0" />
+                  <TextField fx:id="creditHours" layoutX="138.0" layoutY="215.0" />
                   <Button fx:id="addStudent" layoutX="104.0" layoutY="254.0" mnemonicParsing="false" onAction="#onAddClick" text="Add Student" />
                   <Button fx:id="removeStudent" layoutX="266.0" layoutY="254.0" mnemonicParsing="false" onAction="#onRemoveClick" text="Remove Student" />
                   <Button fx:id="tuitionDue" layoutX="101.0" layoutY="302.0" mnemonicParsing="false" onAction="#onTuitionDueClick" prefHeight="18.0" prefWidth="78.0" text="Tuition Due" />
@@ -50,12 +50,44 @@
     </Tab>
     <Tab text="Payment/Financial Aid">
       <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="61.0" layoutY="47.0" text="Name: " />
+                  <Label layoutX="61.0" layoutY="84.0" text="Major: " />
+                  <TextField fx:id="isPaymentName" layoutX="127.0" layoutY="43.0" prefHeight="26.0" prefWidth="379.0" />
+                  <RadioButton layoutX="127.0" layoutY="84.0" mnemonicParsing="false" text="CS">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="PaymentMajors" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton layoutX="194.0" layoutY="84.0" mnemonicParsing="false" text="EE" toggleGroup="$PaymentMajors" />
+                  <RadioButton layoutX="263.0" layoutY="84.0" mnemonicParsing="false" text="ME" toggleGroup="$PaymentMajors" />
+                  <RadioButton layoutX="336.0" layoutY="84.0" mnemonicParsing="false" text="IT" toggleGroup="$PaymentMajors" />
+                  <RadioButton layoutX="404.0" layoutY="84.0" mnemonicParsing="false" text="BA" toggleGroup="$PaymentMajors" />
+                  <Label layoutX="50.0" layoutY="130.0" text="Payment Amount: " />
+                  <Label layoutX="58.0" layoutY="176.0" text="Payment Date: " />
+                  <Label layoutX="39.0" layoutY="221.0" text="Financial Aid Amount: " />
+                  <TextField fx:id="isPaymentAmount" layoutX="189.0" layoutY="126.0" prefHeight="26.0" prefWidth="317.0" />
+                  <TextField fx:id="isFinancialAid" layoutX="189.0" layoutY="217.0" prefHeight="26.0" prefWidth="173.0" />
+                  <DatePicker fx:id="isDate" layoutX="189.0" layoutY="172.0" />
+                  <Label layoutX="175.0" layoutY="131.0" text="\$" />
+                  <Label layoutX="175.0" layoutY="221.0" text="\$" />
+                  <Button fx:id="isPayButton" layoutX="389.0" layoutY="172.0" mnemonicParsing="false" onAction="#onPayClick" prefHeight="26.0" prefWidth="118.0" text="Pay" />
+                  <Button fx:id="isSetButton" layoutX="389.0" layoutY="218.0" mnemonicParsing="false" onAction="#onSetClick" prefHeight="26.0" prefWidth="118.0" text="Set" />
+                  <TextArea fx:id="paymentOutput" layoutX="45.0" layoutY="269.0" prefHeight="226.0" prefWidth="498.0" />
+               </children></AnchorPane>
       </content>
     </Tab>
     <Tab text="Process Tuition">
         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Button layoutX="42.0" layoutY="37.0" mnemonicParsing="false" onAction="#onCalculateTuitionClick" text="Calculate Tuition for Students" />
+                  <Button layoutX="42.0" layoutY="83.0" mnemonicParsing="false" onAction="#onPrintRosterClick" text="Print Roster" />
+                  <Button layoutX="185.0" layoutY="83.0" mnemonicParsing="false" onAction="#onPrintRosterByNameClick" text="Print Roster by Name" />
+                  <Button layoutX="372.0" layoutY="83.0" mnemonicParsing="false" onAction="#onPrintRosterByDateClick" text="Print Roster by Payment Date" />
+                  <TextArea fx:id="processOutput" layoutX="42.0" layoutY="131.0" prefHeight="364.0" prefWidth="505.0" />
+               </children></AnchorPane>
         </content>
     </Tab>
   </tabs>

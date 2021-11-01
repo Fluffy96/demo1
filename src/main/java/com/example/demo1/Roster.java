@@ -8,6 +8,7 @@ package com.example.demo1;
  */
 
 import com.example.demo1.Student.Major;
+import javafx.scene.control.TextArea;
 
 public class Roster {
     private Student[] roster = new Student[GROW];
@@ -215,16 +216,16 @@ public class Roster {
      * @Params none
      * @return none
      */
-    public void print() {
+    public void print(TextArea output) {
         if (size != 0) {
-            System.out.println("* list of students in the roster **");
+            output.setText("* list of students in the roster **");
             for (Student element : roster) {
                 if (element != null)
-                    System.out.println(element.toString());
+                    output.appendText("\n"+element.toString());
             }
-            System.out.println("* end of roster **");
+            output.appendText("\n* end of roster **");
         } else {
-            System.out.println("Student roster is empty!");
+            output.setText("Student roster is empty!");
         }
     }
 
@@ -233,7 +234,7 @@ public class Roster {
      * @Params none
      * @return none
      */
-    public void printByDate() {
+    public void printByDate(TextArea output) {
         if (size != 0) {
             Student[] orderByDate = new Student[size];
             int counter = 0;
@@ -267,13 +268,13 @@ public class Roster {
                     orderByDate[smallIndex] = index;
                 }
             }
-            System.out.println("* list of students made payments ordered by payment date **");
+            output.setText("* list of students made payments ordered by payment date **");
             for (int i = 0; i < orderByDate.length; i++) {
-                System.out.println(orderByDate[i].toString());
+                output.appendText("\n"+orderByDate[i].toString());
             }
-            System.out.println("* end of roster **");
+            output.appendText("\n* end of roster **");
         } else {
-            System.out.println("Student roster is empty!");
+            output.setText("Student roster is empty!");
         }
 
     }
@@ -282,7 +283,7 @@ public class Roster {
      * @Params none
      * @return none
      */
-    public void printByName() {
+    public void printByName(TextArea output) {
         if (size != 0) {
             Student temp;
             for (int i = 0; i < size; i++) {
@@ -294,14 +295,22 @@ public class Roster {
                     }
                 }
             }
-            System.out.println("* list of students ordered by name **");
+            output.setText("* list of students ordered by name **");
             for (int i = 0; i < size; i++) {
-                System.out.println(roster[i].toString());
+                output.appendText("\n"+roster[i].toString());
             }
-            System.out.println("* end of roster **");
+            output.appendText("\n* end of roster **");
         } else {
-            System.out.println("Student roster is empty!");
+            output.setText("Student roster is empty!");
         }
+    }
+
+    /**
+     * This method returns the Student[] named roster.
+     * @return
+     */
+    public Student[] getRoster(){
+        return roster;
     }
 
 }
