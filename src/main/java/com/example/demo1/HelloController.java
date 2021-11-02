@@ -14,10 +14,6 @@ import java.time.LocalDate;
 public class HelloController {
     private static final int NOT_FOUND = -1;
     @FXML
-    private Label welcomeText;
-    @FXML
-    private Button addStudent;
-    @FXML
     private DatePicker isDate;
     @FXML
     private TextField inputName,tuitionField, creditHours, isPaymentName, isPaymentAmount, isFinancialAid;
@@ -34,6 +30,9 @@ public class HelloController {
     private static final double VISIBLE = 1.00;
     private Roster roster = new Roster();
 
+    /**
+     * This method adds a student to the roster when the "Add" button is clicked on the first tab
+     */
     @FXML
     protected void onAddClick() {
         String name = inputName.getText();
@@ -94,6 +93,9 @@ public class HelloController {
         }
     }
 
+    /**
+     * This method makes a tuition payment if the button is clicked on the second tab
+     */
     @FXML
     protected void onPayClick(){
         String name = isPaymentName.getText();
@@ -123,6 +125,9 @@ public class HelloController {
         }
     }
 
+    /**
+     * This method sets the financial aid amount if applicable to the desired student when clicked on
+     */
     @FXML
     protected void onSetClick(){
         String name = isPaymentName.getText();
@@ -146,27 +151,42 @@ public class HelloController {
         }
     }
 
+    /**
+     * This button calculates the tuition of all the students in the roster
+     */
     @FXML
     protected void onCalculateTuitionClick(){
         processOutput.setText("Calculations completed.");
         roster.calculations();
     }
 
+    /**
+     * This button prints the entire roster of students
+     */
     @FXML
     protected void onPrintRosterClick(){
         roster.print(processOutput);
     }
 
+    /**
+     * This button prints out the roster sorted by the name of the students
+     */
     @FXML
     protected void onPrintRosterByNameClick(){
         roster.printByName(processOutput);
     }
 
+    /**
+     * This button prints out the roster sorted by the payment dates of the students
+     */
     @FXML
     protected void onPrintRosterByDateClick(){
         roster.printByDate(processOutput);
     }
 
+    /**
+     * This method controls the radio buttons when Resident is clicked
+     */
     @FXML
     protected void onResidentClick(){
         isNY.setOpacity(INVISIBLE);
@@ -182,6 +202,9 @@ public class HelloController {
         isAbroad.setSelected(false);
     }
 
+    /**
+     * This method controls the radio buttons when NonResident is clicked
+     */
     @FXML
     protected void onNonResidentClick(){
         isTristate.setOpacity(VISIBLE);
@@ -201,6 +224,9 @@ public class HelloController {
         isTristate.setSelected(false);
     }
 
+    /**
+     * This method controls the radio buttons when TriState is clicked
+     */
     @FXML
     protected void onTriStateClick(){
         isTristate.setOpacity(VISIBLE);
@@ -219,6 +245,9 @@ public class HelloController {
         isAbroad.setSelected(false);
     }
 
+    /**
+     * This method controls the radio buttons when International is clicked
+     */
     @FXML
     protected void onInternationalClick(){
         isTristate.setOpacity(VISIBLE);
@@ -237,6 +266,10 @@ public class HelloController {
         isAbroad.setSelected(false);
     }
 
+    /**
+     * This method returns the name of the TriState selected
+     * @return String - name of Tristate
+     */
     private Tri returnState(){
         try {
             RadioButton selectedRadioButton = (RadioButton) State.getSelectedToggle();
@@ -246,6 +279,10 @@ public class HelloController {
         }
     }
 
+    /**
+     * This method returns the number of credit hours for a student
+     * @return int - number of credit hours
+     */
     private int returnCredit(){
         try{
             return Integer.parseInt(creditHours.getText());
@@ -254,6 +291,10 @@ public class HelloController {
         }
     }
 
+    /**
+     * This method returns the name of the major selected
+     * @return String - name of the major
+     */
     private String returnMajor(){
         try {
             RadioButton selectedRadioButton = (RadioButton) Majors.getSelectedToggle();
@@ -263,6 +304,10 @@ public class HelloController {
         }
     }
 
+    /**
+     * This method returns name of a major selected int the Payment tab
+     * @return String - Major of student in payment tab
+     */
     private String returnPaymentMajor(){
         try {
             RadioButton selectedRadioButton = (RadioButton) PaymentMajors.getSelectedToggle();
@@ -271,6 +316,11 @@ public class HelloController {
             return (null);
         }
     }
+
+    /**
+     * This method returns the type of student selected
+     * @return String - type of Student
+     */
     private String returnStudent(){
         try {
             RadioButton selectedRadioButton = (RadioButton) Students.getSelectedToggle();
@@ -279,6 +329,10 @@ public class HelloController {
             return(null);
         }
     }
+
+    /**
+     * This method removes a student from the roster when the "Remove" button is clicked
+     */
     @FXML
     protected void onRemoveClick() {
         String name = inputName.getText();
@@ -301,6 +355,10 @@ public class HelloController {
             profileOutput.setText("No name provided");
         }
     }
+
+    /**
+     * This method calculates the tuition due of a student when clicked
+     */
     @FXML
     protected void onTuitionDueClick(){
         String name = inputName.getText();
@@ -318,9 +376,6 @@ public class HelloController {
                     }else{
                         tuitionField.setText(Double.toString(roster.amountDue(tuit)));
                     }
-
-
-
                 }
                 else{
                     profileOutput.setText("Student is not in the roster.");
