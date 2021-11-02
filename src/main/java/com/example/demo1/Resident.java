@@ -6,7 +6,6 @@ package com.example.demo1;
  * @author Divyesh Nemam Baskaran, Viraj Patel
  *
  */
-
 public class Resident extends Student{
     /**Method is a constructor for students that are residents
      * @param name, major, credits

@@ -6,7 +6,6 @@ package com.example.demo1;
  * @author Divyesh Nemam Baskaran, Viraj Patel
  *
  */
-
 public class International extends NonResident {
 
     private boolean isStudyAbroad;

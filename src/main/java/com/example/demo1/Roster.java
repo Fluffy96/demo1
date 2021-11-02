@@ -1,15 +1,14 @@
 package com.example.demo1;
 
+
+import com.example.demo1.Student.Major;
+import javafx.scene.control.TextArea;
 /**
  * This class manages an array of Students and is used by the UI class
 
  * @author Divyesh Nemam Baskaran, Viraj Patel
  *
  */
-
-import com.example.demo1.Student.Major;
-import javafx.scene.control.TextArea;
-
 public class Roster {
     private Student[] roster = new Student[GROW];
     private int size; //keep track of the number of students in the roster

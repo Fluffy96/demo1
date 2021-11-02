@@ -6,7 +6,11 @@ import com.example.demo1.Student.Major;
 import com.example.demo1.Student.Tri;
 
 import java.time.LocalDate;
-
+/**
+ * This it the Controller class that controls what methods run based on user input on the GUI
+ *
+ * @author Divyesh Nemam Baskaran, Viraj Patel
+ */
 public class HelloController {
     private static final int NOT_FOUND = -1;
     @FXML
@@ -28,13 +32,8 @@ public class HelloController {
 
     private static final double INVISIBLE = 0.60;
     private static final double VISIBLE = 1.00;
-
     private Roster roster = new Roster();
 
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
     @FXML
     protected void onAddClick() {
         String name = inputName.getText();

@@ -6,7 +6,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
+/**
+ * This it the application class that launches the GUI
+ *
+ * @author Divyesh Nemam Baskaran, Viraj Patel
+ */
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {

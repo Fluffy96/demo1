@@ -1,14 +1,14 @@
 package com.example.demo1;
 
+
+
+import com.example.demo1.Student.Major;
 /**
  * This class is the helper class of Student that stores to name and major of individuals
 
  * @author Divyesh Nemam Baskaran, Viraj Patel
  *
  */
-
-import com.example.demo1.Student.Major;
-
 public class Profile {
     private String name;
     private Major major; //5 majors and 2-character each: CS, IT, BA, EE, ME

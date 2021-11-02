@@ -1,12 +1,11 @@
-package com.example.demo1; /**
+package com.example.demo1;
+import java.text.DecimalFormat;
+/**
  * This class is the superclass for all different type of students
 
  * @author Divyesh Nemam Baskaran, Viraj Patel
  *
  */
-
-import java.text.DecimalFormat;
-
 public class Student {
 
     private Profile profile;
