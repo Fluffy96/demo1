@@ -80,7 +80,11 @@ public class HelloController {
 
                         }
                     }else{
-                        profileOutput.setText("Have not filled in Credits");
+                        if(creditHours.getText().equals("")) {
+                            profileOutput.setText("Have not filled in Credits");
+                        }else{
+                            profileOutput.setText("Invalid credit hours.");
+                        }
                     }
                 }else {
                     profileOutput.setText("Have not clicked Student Type");
