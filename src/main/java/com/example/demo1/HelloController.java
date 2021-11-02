@@ -104,7 +104,7 @@ public class HelloController {
             String maj = returnMajor();
             if (maj != null) {
                 Major major = toMajor(maj);
-                String output =roster.changeStudyAbroad(new Student(name,major), roster.getStatus(new Student(name,major)));
+                String output =roster.changeStudyAbroad(new Student(name,major), !roster.getStatus(new Student(name,major)));
                 profileOutput.setText(output);
             } else {
                 profileOutput.setText("Have not clicked a Major");
