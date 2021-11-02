@@ -97,6 +97,26 @@ public class HelloController {
      * This method makes a tuition payment if the button is clicked on the second tab
      */
     @FXML
+    protected void onChangeAbroadStatus(){
+        String name = inputName.getText();
+        profileOutput.setText("");
+        if(!name.equals("")) {
+            String maj = returnMajor();
+            if (maj != null) {
+                Major major = toMajor(maj);
+                String output =roster.changeStudyAbroad(new Student(name,major), roster.getStatus(new Student(name,major)));
+                profileOutput.setText(output);
+            } else {
+                profileOutput.setText("Have not clicked a Major");
+            }
+        }else{
+            profileOutput.setText("No name provided");
+        }
+    }
+    /**
+     * This method makes a tuition payment if the button is clicked on the second tab
+     */
+    @FXML
     protected void onPayClick(){
         String name = isPaymentName.getText();
         paymentOutput.setText("");

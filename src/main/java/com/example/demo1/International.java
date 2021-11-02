@@ -41,6 +41,14 @@ public class International extends NonResident {
         this.isStudyAbroad = isAbroad;
     }
 
+    /**Method that returns value of study abroad
+     * @Params none
+     * @return false if not or if not international and True if you are international and abroad
+     */
+    @Override
+    public boolean getStudyAbroad(){
+        return this.isStudyAbroad;
+    }
 
     /**Method returns whether student is an international
      * @Param none

@@ -86,9 +86,25 @@ public class Roster {
         }
         return false;
     }
+    /**
+     * Method resturns for international students their study abroad status
+     * @param student
+     * @return boolean
+     */
+    public boolean getStatus(Student student) {
+        int index = find(student);
+        if (index == NOT_FOUND) {
+            return false;
+        } else if (!roster[index].isInternational()) {
+            return false;
+        } else{
+            return roster[index].getStudyAbroad();
+        }
+
+    }
 
     /**
-     * Method is a public verison of find, returns index of studen in roster
+     * Method is a public verison of find, returns index of student in roster
      * @param student
      * @return int
      */
